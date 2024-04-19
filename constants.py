@@ -1,3 +1,8 @@
+# Checkmate Value
+MATE = 30000
+
+INFINTY = 40000
+
 # _, Pawn, Knight, Bishop, Rook, Queen, King
 PIECE_VALUES = [None, 100, 300, 300, 500, 900, 0]
 
