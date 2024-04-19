@@ -1,5 +1,5 @@
 import chess
-from constants import MATE, PIECE_VALUES, INFINTY
+from constants import MATE, PIECE_VALUES, INFINITY
 from evaluate import positional_advantage
 
 def is_drawn(board):
@@ -30,7 +30,7 @@ def search(board, depth, alpha, beta):
     legal_moves = sorted(board.legal_moves, reverse = True,
                          key = lambda m: move_sorting_policy(board, m))
     
-    best_score = -INFINTY
+    best_score = -INFINITY
     best_moves = []
     for move in legal_moves:
         board.push(move)
