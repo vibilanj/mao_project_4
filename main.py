@@ -1,6 +1,6 @@
 import chess
 from constants import INFINITY
-from search import minimax
+from search import minimax, alphabeta
 from evaluate import material_advantage, positional_advantage
 
 board = chess.Board()
@@ -20,11 +20,12 @@ while not board.is_game_over():
     print(board)
     depth = 3
 
-    score, moves = minimax(board, depth)
-    print(chess.COLOR_NAMES[board.turn], score, " ".join(map(str, moves)))
+    score, pv = minimax(board, depth)
+    # score, pv = alphabeta(board, depth, -INFINITY, INFINITY)
+    print(chess.COLOR_NAMES[board.turn], score, " ".join(map(str, pv)))
     print("\n")
 
-    best_move = moves[0]
+    best_move = pv[0]
     board.push(best_move)
 
 print(board)
