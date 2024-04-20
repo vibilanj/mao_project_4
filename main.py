@@ -1,15 +1,28 @@
 import chess
 from constants import INFINITY
-from search import search
+from search import minimax
+from evaluate import material_advantage, positional_advantage
 
 board = chess.Board()
 
+# board.push_san("e4")
+# board.push_san("e5")
+# board.push_san("Nf3")
+# board.push_san("Nc6")
+# board.push_san("Bb5")
+# board.push_san("a6")
+
+# print(board)
+# print("WHITE to play" if board.turn else "BLACK to play")
+# print(-material_advantage(board), -positional_advantage(board))
+
 while not board.is_game_over():
     print(board)
-    depth = 5
+    depth = 3
 
-    score, moves = search(board, depth, -INFINITY, +INFINITY)
+    score, moves = minimax(board, depth)
     print(chess.COLOR_NAMES[board.turn], score, " ".join(map(str, moves)))
+    print("\n")
 
     best_move = moves[0]
     board.push(best_move)

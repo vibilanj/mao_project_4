@@ -16,8 +16,8 @@ def move_sorting_policy(board, move):
         order = PIECE_VALUES[captured_piece.piece_type] - PIECE_VALUES[moving_piece.piece_type]
     return order
 
-# Minimax (Negamax variant) with Alpha-beta pruning
-def search(board, depth, alpha, beta):
+# Minimax (negamax) algorithm. Depth of 5 is already quite slow.
+def minimax(board, depth):
     if depth <= 0:
         return positional_advantage(board), []
     
@@ -27,25 +27,17 @@ def search(board, depth, alpha, beta):
     if is_drawn(board):
         return 0, []
     
-    legal_moves = sorted(board.legal_moves, reverse = True,
-                         key = lambda m: move_sorting_policy(board, m))
-    
     best_score = -INFINITY
-    best_moves = []
-    for move in legal_moves:
+    # Principal variation (an optimal sequence of moves for both players)
+    pv = []
+    for move in board.legal_moves:
         board.push(move)
-
-        child_score, child_moves = search(board, depth - 1, -beta, -alpha)
+        child_score, child_pv = minimax(board, depth - 1)
         child_score = -child_score
         board.pop()
 
-        if child_score >= beta:
-            return beta, []
-        
         if child_score > best_score:
             best_score = child_score
-            if best_score > alpha:
-                alpha = best_score
-                best_moves = [move] + child_moves
+            pv = [move] + child_pv
 
-        return alpha, best_moves
+    return best_score, pv
