@@ -18,10 +18,10 @@ board = chess.Board()
 
 while not board.is_game_over():
     print(board)
-    depth = 3
+    depth = 5
 
-    score, pv = minimax(board, depth)
-    # score, pv = alphabeta(board, depth, -INFINITY, INFINITY)
+    # score, pv = minimax(board, depth)
+    score, pv = alphabeta(board, depth, -INFINITY, INFINITY)
     print(chess.COLOR_NAMES[board.turn], score, " ".join(map(str, pv)))
     print("\n")
 
