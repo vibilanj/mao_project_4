@@ -1,5 +1,13 @@
 import chess
 
+def print_board(board):
+    print(board.unicode(
+        invert_color = True,
+        borders = False,
+        empty_square = ".",
+        orientation = board.turn
+        ), "\n")
+
 def print_outcome(board):
         board.outcome().winner
         if board.is_checkmate():

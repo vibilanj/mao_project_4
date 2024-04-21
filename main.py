@@ -3,7 +3,7 @@ import chess
 
 from constants import INFINITY
 from search import minimax, alphabeta
-from utils import print_outcome
+from utils import print_board, print_outcome
 
 parser = argparse.ArgumentParser("Chess engine")
 parser.add_argument(
@@ -16,7 +16,7 @@ parser.add_argument(
 parser.add_argument(
     "-d", "--depth",
     type = int,
-    default = 5,
+    default = 3,
     help = "engine search depth"
 )
 parser.add_argument(
@@ -44,27 +44,26 @@ elif args.algorithm == "alphabeta":
 match args.mode:
     case "watch":
         while not board.is_game_over():
-            print(board)
+            print_board(board)
             score, pv = search(board)
             print(chess.COLOR_NAMES[board.turn], score, " ".join(map(str, pv)))
-            print("\n")
             best_move = pv[0]
             board.push(best_move)
 
-        print(board)
+        print_board(board)
         print_outcome(board)
 
     case "play":
         if args.side == "black":
-            print(board, "\n")
+            print_board(board)
             _, pv = search(board)
             best_move = pv[0]
             board.push(best_move)
             print(f"Engine plays {best_move.uci()}")
 
         while not board.is_game_over():
-            print(board, "\n")
-            move = input("Enter your move: ")
+            print_board(board)
+            move = input("Enter your move: ").strip()
             try:
                 board.push_san(move)
             except chess.InvalidMoveError:
@@ -76,9 +75,12 @@ match args.mode:
             except chess.AmbiguousMoveError:
                 print("Ambiguous move")
                 continue
-            print(board, "\n")
+            print_board(board)
 
             _, pv = search(board)
             best_move = pv[0]
             board.push(best_move)
             print(f"Engine plays {best_move.uci()}")
+
+        print_board(board)
+        print_outcome(board)
