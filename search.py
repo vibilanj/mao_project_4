@@ -1,24 +1,17 @@
 import chess
 from constants import MATE, PIECE_VALUES, INFINITY
+from utils import is_drawn
 from evaluate import positional_advantage
 
 
-# Conditions that can cause the game to end in a draw.
-def is_drawn(board):
-    return board.is_fivefold_repetition() \
-        or board.is_insufficient_material() \
-            or board.is_seventyfive_moves() \
-                or board.is_stalemate()
-
-
-# Move sorting policy based that prioritizes capturing moves. Used in the
+# Move sorting policy based that prioritizes attacking moves. Used in the
 # alpha-beta pruning technique.
 def move_sorting_policy(board, move):
     moving_piece = board.piece_at(move.from_square)
-    captured_piece = board.piece_at(move.to_square)
+    attacked_piece = board.piece_at(move.to_square)
     order = 0 
-    if captured_piece:
-        order = PIECE_VALUES[captured_piece.piece_type] - PIECE_VALUES[moving_piece.piece_type]
+    if attacked_piece:
+        order = PIECE_VALUES[attacked_piece.piece_type] - PIECE_VALUES[moving_piece.piece_type]
     return order
 
 

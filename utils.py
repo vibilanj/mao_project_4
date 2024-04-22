@@ -1,6 +1,14 @@
 import chess
 
 
+# Conditions that can cause the game to end in a draw.
+def is_drawn(board):
+    return board.is_fivefold_repetition() \
+        or board.is_insufficient_material() \
+            or board.is_seventyfive_moves() \
+                or board.is_stalemate()
+
+
 # Prints the chess board. It defaults to printing unicode characters with no
 # borders. If unicode is set to False, it will print ASCII characters instead.
 # If borders is set to True, it will print borders around the board.
