@@ -1,4 +1,4 @@
-# Modelling and Optimization Project 3
+# Modelling and Optimization Project 4
 
 ## Introduction
 
@@ -6,7 +6,7 @@ This project is a chess engine that uses the minimax algorithm with alpha-beta p
 
 ## Implementation Details
 
-The project is implemented in Python. The chess engine uses the `python-chess` library to represent the board and generate moves. Although this could have been done as a part of the project, it would have taken more time to get the implemtation right, especially with the various rules of chess. This also meant that I could spend more time on the position evaluation and move selection algorithms.
+The project is implemented in Python. The chess engine uses the `python-chess` library to represent the board and generate moves. Although this could have been done as a part of the project, it would have taken more time to get the implementation right, especially with the various rules of chess. This also meant that I could spend more time on the position evaluation and move selection algorithms.
 
 Another change that was made from the proposal was that the engine does not use the UCI protocol. Instead, the engine can be played against using the terminal. This was done to simplify the project and focus on the core functionalities. However, adding the UCI functionality should be relatively straightforward if needed.
 
