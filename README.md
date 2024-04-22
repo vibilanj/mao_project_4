@@ -78,7 +78,7 @@ Algebraic notation is a standard way to represent chess moves. It is a system fo
 
 The pieces are (usually) represented by their first letter (K for king, Q for queen, R for rook, B for bishop, N for knight, and no letter for pawn). Captures are represented by an 'x' and check is represented by a '+'. The move is represented by the piece letter followed by the destination square. For example, the move `e4` means moving the pawn in the e file to the 4th rank. The move `Nf3` means moving the knight to the f3 square. The move `Qxb7` means moving the queen to capture the piece on the b7 square.
 
-However, in this program, you can simply input the starting square and the ending square. For example if you want to move the pawn from e2 to e4, you can simply input `e2e4`. If you want to move the knight from g1 to f3, you can input `g1f3`.qq
+However, in this program, you can simply input the starting square and the ending square. For example if you want to move the pawn from e2 to e4, you can simply input `e2e4`. If you want to move the knight from g1 to f3, you can input `g1f3`.
 
 ## Further Improvements
 
