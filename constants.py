@@ -1,12 +1,15 @@
 # Checkmate Value
 MATE = 30000
 
+# Infinity Value
 INFINITY = 40000
 
+# Piece Values
 # _, Pawn, Knight, Bishop, Rook, Queen, King
 PIECE_VALUES = [None, 100, 300, 300, 500, 900, 0]
 
-# Left to right A to B, Top to bottom 1 to 8
+# Piece-square tables
+# Left to right is rank A to B, Top to bottom is row 1 to 8
 PIECE_POSITION_VALUES = [
     None, 
     [ # Pawn

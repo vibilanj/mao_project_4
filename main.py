@@ -5,6 +5,7 @@ from constants import INFINITY
 from search import minimax, alphabeta
 from utils import print_board, print_outcome
 
+# Parses the command line arguments.
 parser = argparse.ArgumentParser("Chess engine")
 parser.add_argument(
     "mode",
@@ -35,13 +36,16 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
+# Initializes the chess board and the search algorithm.
 board = chess.Board()
 if args.algorithm == "minimax":
     search = lambda board: minimax(board, args.depth)
 elif args.algorithm == "alphabeta":
     search = lambda board: alphabeta(board, args.depth, -INFINITY, INFINITY)
 
+# Runs the program based on the mode.
 match args.mode:
+    # Watch mode: the engine plays against itself.
     case "watch":
         while not board.is_game_over():
             print_board(board)
@@ -53,7 +57,9 @@ match args.mode:
         print_board(board)
         print_outcome(board)
 
+    # Play mode: the engine plays against the user.
     case "play":
+        # If the engine is playing as black, it will make the first move.
         if args.side == "black":
             print_board(board)
             _, pv = search(board)
@@ -61,6 +67,8 @@ match args.mode:
             board.push(best_move)
             print(f"Engine plays {best_move.uci()}")
 
+        # Captures the user's move and makes the engine's move until the
+        # game is over.
         while not board.is_game_over():
             print_board(board)
             move = input("Enter your move: ").strip()

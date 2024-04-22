@@ -1,6 +1,11 @@
 import chess
 from constants import PIECE_VALUES, PIECE_POSITION_VALUES
 
+
+# Evaluate the board based on the material advantage of the pieces. Piece
+# values are based on the standard piece value system. White has a positive
+# score if it has the advantage, and black has a negative score if it has the
+# advantage. The score is the sum of the value of all the pieces on the board.
 def material_advantage(board: chess.Board) -> int:
     score = 0
     for piece_type in chess.PIECE_TYPES:
@@ -14,6 +19,12 @@ def material_advantage(board: chess.Board) -> int:
         score = -score
     return score
 
+
+# Evaluate the board based on the positional advantage of the pieces. Piece
+# position values are based on the standard piece-square tables. White has a
+# positive score if it has the advantage, and black has a negative score if it
+# has the advantage. The score is the sum of the value of all the pieces on the
+# board based on their position (includes both material and positional).
 def positional_advantage(board: chess.Board) -> int:
     score = 0
     for piece_type in chess.PIECE_TYPES:
